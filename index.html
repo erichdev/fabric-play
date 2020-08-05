@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <title>Fabric play</title>
+
+    <script src="http://unpkg.com/react@16.8.6/umd/react.development.js"></script>
+    <script src="http://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"></script>
+    <script src="http://unpkg.com/office-ui-fabric-react@7/dist/office-ui-fabric-react.js"></script>
+    <script src="http://unpkg.com/@uifabric/react-hooks@7/dist/react-hooks.js"></script>
+</head>
+
+<body>
+    <div id="content"></div>
+    <div>
+        <button onclick="updateCaret()" type="button">Make caret focusable</button>
+    </div>
+
+
+    <script>
+        const { ComboBox, IComboBox, IComboBoxOption, PrimaryButton, SelectableOptionMenuItemType, initializeIcons } = window.Fabric;
+
+        // Initialize icons in case this example uses them
+        initializeIcons();
+
+        const comboBoxBasicOptions = [
+            { key: 'Header1', text: 'First heading', itemType: SelectableOptionMenuItemType.Header },
+            { key: 'A', text: 'Option A' },
+            { key: 'B', text: 'Option B' },
+            { key: 'C', text: 'Option C' },
+            { key: 'D', text: 'Option D' },
+            { key: 'divider', text: '-', itemType: SelectableOptionMenuItemType.Divider },
+            { key: 'Header2', text: 'Second heading', itemType: SelectableOptionMenuItemType.Header },
+            { key: 'E', text: 'Option E' },
+            { key: 'F', text: 'Option F', disabled: true },
+            { key: 'G', text: 'Option G' },
+            { key: 'H', text: 'Option H' },
+            { key: 'I', text: 'Option I' },
+            { key: 'J', text: 'Option J' },
+        ];
+
+        const comboBoxMultiStyle = { maxWidth: 300, display: 'block', marginTop: '10px' };
+
+        const ComboBoxBasicExample = () => {
+            const comboBoxRef = React.useRef(null);
+            const onOpenClick = React.useCallback(() => {
+                var _comboBoxRef$current;
+
+                return (_comboBoxRef$current = comboBoxRef.current) === null || _comboBoxRef$current === void 0 ? void 0 : _comboBoxRef$current.focus(true);
+            }, []);
+            return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(ComboBox, {
+                componentRef: comboBoxRef,
+                defaultSelectedKey: "C",
+                label: "Basic ComboBox",
+                allowFreeform: true,
+                autoComplete: "on",
+                options: comboBoxBasicOptions
+            }), /*#__PURE__*/React.createElement(PrimaryButton, {
+                text: "Open ComboBox",
+                style: comboBoxMultiStyle,
+                onClick: onOpenClick
+            }));
+        };
+
+        const ComboBoxBasicExampleWrapper = () => /*#__PURE__*/React.createElement(Fabric.Fabric, null, /*#__PURE__*/React.createElement(ComboBoxBasicExample, null));
+
+        ReactDOM.render( /*#__PURE__*/React.createElement(ComboBoxBasicExampleWrapper, null), document.getElementById('content'));
+
+        function updateCaret() {
+            var button = document.getElementsByClassName('ms-ComboBox-CaretDown-button')[0];
+            button.setAttribute('tabindex', '0');
+        }
+    </script>
+</body>
+
+</html>
