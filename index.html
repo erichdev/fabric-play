@@ -65,7 +65,7 @@
 
         function updateCaret() {
             var button = document.getElementsByClassName('ms-ComboBox-CaretDown-button')[0];
-            // button.setAttribute('aria-hidden', 'false');
+            button.setAttribute('tabindex', '0');
             button.removeAttribute('data-is-focusable');
             button.removeAttribute('aria-hidden');
         }
